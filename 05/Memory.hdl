@@ -25,5 +25,21 @@ CHIP Memory {
     OUT out[16];
 
     PARTS:
-	//// Replace this comment with your code.
+  	//// Replace this comment with your code.
+    DMux(in=load, sel=address[14], a=ramload, b=skload);
+    DMux(in=skload, sel=address[13], a=scload, b=noload);
+
+    //load ram and screen
+    RAM16K(in=in, load=ramload, address=address[0..13], out=ROUT);
+    Screen(in=in, load=scload, address=address[0..12], out=SOUT);
+
+    //Make sure we're accessing 0x6000
+    Keyboard(out=kbd);
+    Or8Way(in=address[0..7], out=notkbd1);
+    Or8Way(in[0..4]=address[8..12], in[5..7]=false, out=notkbd2);
+    Or(a=notkbd1, b=notkbd2, out=notkbd);
+    Mux16(a=kbd, b=false, sel=notkbd, out=KOUT);
+    
+    //determine the output
+    Mux4Way16(a=ROUT, b=ROUT, c=SOUT, d=KOUT, sel=address[13..14], out=out);
 }

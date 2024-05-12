@@ -1,9 +1,0 @@
-push A,R
-@1000
-addi R1,R2
-push A,R
-@1000
-addi R4,R3
-push D,C
-@1000
-addi R3,R4

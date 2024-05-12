@@ -7,7 +7,7 @@
 class Symbol {
   private:
     std::unordered_map<std::string, int> symbolTable;
-  
+    std::string path;
   public:
     Symbol() : symbolTable() {}
     

@@ -14,6 +14,9 @@ std::string paddedString(std::string input) {
 }
 
 void Symbol::addEntry(const std::string& symbol, int address) {
+  if (contains(symbol)) {
+    throw std::domain_error("Symbol " + symbol+ "already use");
+  }
   Symbol::symbolTable[symbol] = address;
 }
 

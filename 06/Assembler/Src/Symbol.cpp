@@ -1,7 +1,24 @@
-#include "./../Inc/Symbol.hpp"
 #include <fstream>
 #include <stdexcept>
 #include <sstream>
+#include <Symbol.hpp>
+
+Symbol::Symbol() {
+  // initialize the symobol table with the predefined symbol
+  symbolTable["SP"] = 0x0000;
+  symbolTable["LCL"] = 0x0001;
+  symbolTable["ARG"] = 0x0002;
+  symbolTable["THIS"] = 0x0003;
+  symbolTable["THAT"] = 0x0004;
+  symbolTable["KBD"] = 0x6000;
+  symbolTable["SCREEN"] = 0x4000;
+  std::stringstream ss("");
+  for (unsigned char c = 0; c < 16; c++) {
+    ss << "R" << c-0;
+    symbolTable[ss.str()] = c;
+    ss.str("");
+  }  
+}
 
 std::string paddedString(std::string input) {
   std::stringstream res(input);

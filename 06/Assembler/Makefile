@@ -22,3 +22,4 @@ cmake: Makefile
 
 clean:
 	rm -rf $(BUILD_DIR)
+	rm -rf *.hack

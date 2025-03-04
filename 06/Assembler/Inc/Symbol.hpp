@@ -9,7 +9,7 @@ class Symbol {
     std::unordered_map<std::string, int> symbolTable;
     std::string path;
   public:
-    Symbol() : symbolTable() {}
+    Symbol();
     
     /* @brief :
     * Routine Name : addEntry

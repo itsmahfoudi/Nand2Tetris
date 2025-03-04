@@ -1,29 +1,35 @@
 #include <fstream>
 #include <string>
+#include <Symbol.hpp>
+#include <Code.hpp>
+#include <iostream>
+#include <vector>
 
 enum instType { A_INSTRUCTION, C_INSTRUCTION, L_INSTRUCTION };
 
 class Parser {
 private:
-  int cursor{0};
+  uint32_t cursor{0};                // current index inside commands vector
+  std::ifstream inputFile;           // input file stream
+  std::vector<std::string> commands; // vector of commands
 
 public:
   /* @brief :
    * Routine Name : Constructor
-   * In : Input file
+   * In : Input file name
    * Out : None
    * Description : Opens the Input file and gets ready to parse it
    */
-  Parser(std::fstream file);
+  Parser(std::string inFileName);
 
   /* @brief :
-   * Routine Name : hasMoreLine
+   * Routine Name : hasMoreCommands
    * In : None
    * Out : True/false
    * Description : Are there more line in the Input
    */
 
-  bool hasMoreLine(void);
+  bool hasMoreCommands(void);
 
   /* @brief :
    * Routine Name : advance
